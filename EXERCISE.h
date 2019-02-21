@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <ostream>
 
@@ -16,17 +17,8 @@ class StringLogger : public ILogger {
     std::ostream& stream;
     std::string lastError;
 public:
-    StringLogger(std::ostream& stream) : stream{stream} {}
-    ILogger& LogInfo(const std::string& str) override {
-        stream << "INFO: " << str;
-        return *this;
-    }
-    ILogger& LogError(const std::string& str) override {
-        stream << "ERROR: " << str;
-        lastError = str;
-        return *this;
-    }
-    const std::string& GetLastError() const override {
-        return lastError;
-    }
+    StringLogger(std::ostream& stream);
+    ILogger& LogInfo(const std::string& str) override;
+    ILogger& LogError(const std::string& str) override;
+    const std::string& GetLastError() const override;
 };
